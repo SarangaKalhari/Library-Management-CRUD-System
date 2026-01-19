@@ -4,5 +4,13 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/library?createDatabaseIfNotExist= true</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">1234</property>
+
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show.sql">true</property>
+
+        <mapping class="org.example.model.entity.Member"/>
+        <mapping class="org.example.model.entity.Book"/>
+
+
     </session-factory>
 </hibernate-configuration>
