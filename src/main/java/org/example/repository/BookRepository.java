@@ -1,60 +1,55 @@
 package org.example.repository;
 
 import org.example.config.HibernateUtil;
+import org.example.model.entity.Book;
 import org.example.model.entity.Member;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class MemberRepository {
+public class BookRepository {
 
-    public void addMember(Member member){
 
+    public void addBook(Book book){
 
         Session session = HibernateUtil.getSessionFactory().openSession();
-
         Transaction tx = session.beginTransaction();
 
-        session.persist(member);
+        session.persist(book);
         tx.commit();
 
         session.close();
     }
 
-    public void updateMember(Member member){
+    public void updateBook(Book book){
 
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         Transaction tx = session.beginTransaction();
 
-        session.merge(member);
+        session.merge(book);
         tx.commit();
 
         session.close();
     }
 
-    public void deleteMember(String id) {
+    public void deleteBook(String id){
 
         Session session = HibernateUtil.getSessionFactory().openSession();
+
         Transaction tx = session.beginTransaction();
 
-        Member member = session.find(Member.class, id);
-
-        if(member != null){
-            session.remove(member);
-
-        }
+        session.remove(session.find(Book.class, id));
 
         tx.commit();
-        session.close();
-
 
     }
 
+    public Book searchBook(String id){
 
-    public Member searchMember(String id){
         Session session = HibernateUtil.getSessionFactory().openSession();
+
         Transaction tx = session.beginTransaction();
 
-        return session.find(Member.class, id);
+        return session.find(Book.class, id);
     }
 }
